@@ -14,4 +14,7 @@ public interface UserRepository extends Neo4jRepository<User, String>
 
     @Query("{'_id':?0}")
     User findUserById(String id);
+
+    @Query("MATCH (user:User{id: $userId})-[r:RATED]->(song) WHERE song.id = $songId RETURN r.rating")
+    Integer getRatingForSongByUser(String userId, String songId);
 }

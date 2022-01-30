@@ -26,7 +26,7 @@ public class TbpProjektApiV2Application implements CommandLineRunner
 	@Override
 	public void run(final String... args)
 	{
-		dataGenerator.deleteExistingData();
-		dataGenerator.generateData();
+		//dataGenerator.deleteExistingData();
+		//dataGenerator.generateData();
 	}
 }

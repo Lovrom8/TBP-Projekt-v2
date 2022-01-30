@@ -132,7 +132,7 @@ public class DataGeneratorImpl implements DataGenerator
         Song songCantLet = songRepo.save(new Song("Can't Let Go", genreRNB, albumIAm, Arrays.asList(sbSoul, sbDisco, sbFunk)));
         Song songInTheStone = songRepo.save(new Song("In the Stone", genreRNB, albumIAm, Arrays.asList(sbSoul, sbDisco, sbFunk)));
 
-        songRepo.save(new Song("Elephant Talk", genreRock, albumDiscipline, List.of(sbProgRock)));
+        /*songRepo.save(new Song("Elephant Talk", genreRock, albumDiscipline, List.of(sbProgRock)));
         songRepo.save(new Song("Frame by Frame", genreRock, albumDiscipline, List.of(sbProgRock)));
         songRepo.save(new Song("Indiscipline", genreRock, albumDiscipline, List.of(sbProgRock)));
 
@@ -169,7 +169,7 @@ public class DataGeneratorImpl implements DataGenerator
         songRepo.save(new Song("Your Eyes", genreRNB, albumPopcorn, List.of(sbJPop)));
 
         songRepo.save(new Song("Red", genrePop, albumRed, Arrays.asList(sbCountryPop, sbRock)));
-        songRepo.save(new Song("The Last Time", genrePop, albumRed, List.of(sbRock)));
+        songRepo.save(new Song("The Last Time", genrePop, albumRed, List.of(sbRock)));*/
 
         User user1 = new User("Lovro", "Posarić", "lovrom8", "uVhgF0Q9uHHEwF+87AGsPQ==.ICagYzxSbHyXMmGvDvKmzh79fhjFuQ1DjsCAGM8e9BY=", "lovro@rm.com");
         User user2 = new User("Tester", "Testerić", "test1234", "lTwKXwSIoBkK1zCQqIL3rA==.tmfmid04bY856v4qSTVH1L6G9qZEdLwO81gk8rfLfWc=", "lovrot@rm.com");

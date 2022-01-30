@@ -7,9 +7,11 @@ import com.lp.tbp_projekt.v2.api.models.Song;
 import com.lp.tbp_projekt.v2.api.models.User;
 import com.lp.tbp_projekt.v2.api.repository.SongRepository;
 import com.lp.tbp_projekt.v2.api.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class RatingServiceImpl implements RatingService
 {
     private final SongRepository songRepository;

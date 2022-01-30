@@ -23,6 +23,10 @@ public class Song
     @Relationship(type = "IN_SUBGENRES")
     private List<Subgenre> subgenres;
 
+    public Song()
+    {
+    }
+
     public Song(final String title, final Genre genre, final Album album, final List<Subgenre> subgenres)
     {
         this.title = title;
@@ -79,5 +83,18 @@ public class Song
     public void setSubgenres(final List<Subgenre> subgenres)
     {
         this.subgenres = subgenres;
+    }
+
+
+    public String getAllSubgenres()
+    {
+        String allSubgenres = "";
+
+        for (Subgenre subgenre : subgenres)
+        {
+            allSubgenres = allSubgenres + ", " + subgenre.getName();
+        }
+
+        return allSubgenres.substring(1);
     }
 }
