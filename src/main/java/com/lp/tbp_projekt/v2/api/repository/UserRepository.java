@@ -12,7 +12,7 @@ public interface UserRepository extends Neo4jRepository<User, String>
     @Query("MATCH (user:User) WHERE user.email = $email RETURN user")
     User findUserByEmail(String email);
 
-    @Query("{'_id':?0}")
+    @Query("MATCH (user:User) WHERE user.id = $id RETURN user")
     User findUserById(String id);
 
     @Query("MATCH (user:User{id: $userId})-[r:RATED]->(song) WHERE song.id = $songId RETURN r.rating")

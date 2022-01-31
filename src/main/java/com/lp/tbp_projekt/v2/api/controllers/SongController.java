@@ -44,4 +44,48 @@ public class SongController
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new RecommenderResponse<>(false, "User not found!", null));
         }
     }
+
+    @RequestMapping(value = "/api/songs/{songId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getSongDetails(@PathVariable("songId") String songId)
+    {
+        Authentication context = SecurityContextHolder.getContext().getAuthentication();
+        String idJWT = context != null ? (String) context.getPrincipal() : null;
+
+        if (idJWT == null)
+        {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new RecommenderResponse<>(false, "Invalid credentials!", null));
+        }
+
+        try
+        {
+            return ResponseEntity.ok(new RecommenderResponse<>(true, "Song details found!", songService.getSongDetails(songId)));
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new RecommenderResponse<>(false, "User not found!", null));
+        }
+    }
+
+    @RequestMapping(value = "/api/songs/rating/{songId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getSongRating(@PathVariable("songId") String songId)
+    {
+        Authentication context = SecurityContextHolder.getContext().getAuthentication();
+        String idJWT = context != null ? (String) context.getPrincipal() : null;
+
+        if (idJWT == null)
+        {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new RecommenderResponse<>(false, "Invalid credentials!", null));
+        }
+
+        try
+        {
+            return ResponseEntity.ok(new RecommenderResponse<>(true, "Song details found!", songService.getSongRating(idJWT, songId)));
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new RecommenderResponse<>(false, "User not found!", null));
+        }
+    }
 }

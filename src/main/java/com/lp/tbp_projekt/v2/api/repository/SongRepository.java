@@ -17,4 +17,7 @@ public interface SongRepository extends Neo4jRepository<Song, String>
             "(album)-[a:BY_ARTIST]->(artist)" +
             "RETURN song, collect(o), album, collect(g), genre, collect(s), subgenre, collect(a), artist")
     List<Song> findSongsRatedByUser(String userId);
+
+    @Query("MATCH (user:User{id: $userId})-[r:RATED]->(song) WHERE song.id=$songId RETURN r.rating")
+    Integer getSongRatingByUser(String userId, String songId);
 }

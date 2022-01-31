@@ -1,6 +1,7 @@
 package com.lp.tbp_projekt.v2.api.services;
 
 import com.lp.tbp_projekt.v2.api.dto.RatedSongsDto;
+import com.lp.tbp_projekt.v2.api.dto.SongRatingDto;
 import com.lp.tbp_projekt.v2.api.mappers.RatedSongMapper;
 import com.lp.tbp_projekt.v2.api.models.Song;
 import com.lp.tbp_projekt.v2.api.repository.SongRepository;
@@ -38,5 +39,18 @@ public class SongServiceImpl implements SongService
         }
 
         return ratedSongs;
+    }
+
+    @Override
+    public RatedSongsDto getSongDetails(final String songId)
+    {
+        return ratedSongMapper.mapDto(songRepository.findById(songId).get());
+    }
+
+    @Override
+    public SongRatingDto getSongRating(final String userId, final String songId)
+    {
+        Integer rating = songRepository.getSongRatingByUser(userId, songId);
+        return new SongRatingDto(rating);
     }
 }
