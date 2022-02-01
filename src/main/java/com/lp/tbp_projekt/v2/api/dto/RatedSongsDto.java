@@ -4,8 +4,8 @@ public class RatedSongsDto
 {
     private String songId;
     private String albumName;
-    private String artist;
-    private String song;
+    private String artistName;
+    private String songName;
     private String genre;
     private String subgenres;
     private String albumUrl;
@@ -19,12 +19,12 @@ public class RatedSongsDto
     {
         this.songId = songId;
         this.albumName = albumName;
-        this.artist = artist;
+        this.artistName = artist;
         this.genre = genre;
         this.subgenres = subgenres;
         this.albumUrl = albumUrl;
         this.rating = rating;
-        this.song = song;
+        this.songName = song;
     }
 
     public String getSongId()
@@ -49,12 +49,12 @@ public class RatedSongsDto
 
     public String getArtist()
     {
-        return artist;
+        return artistName;
     }
 
     public void setArtist(final String artist)
     {
-        this.artist = artist;
+        this.artistName = artist;
     }
 
     public String getGenre()
@@ -99,11 +99,11 @@ public class RatedSongsDto
 
     public String getSong()
     {
-        return song;
+        return songName;
     }
 
     public void setSong(final String song)
     {
-        this.song = song;
+        this.songName = song;
     }
 }

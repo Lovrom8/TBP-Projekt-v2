@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             "/api/subgenres",
             "/api/subgenres/**",
             "/api/recommendation",
-            "/api/songs/**"
+            "/api/songs/**",
+            "/api/songs"
     };
 
     @Override

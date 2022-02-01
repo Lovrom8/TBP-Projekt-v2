@@ -179,7 +179,9 @@ public class DataGeneratorImpl implements DataGenerator
 
         user1.addRating(new Rating(songCR, 5));
         user1.addRating(new Rating(songCGates, 4));
+        user2.addRating(new Rating(songCGates, 5));
         user2.addRating(new Rating(songSnakes, 1));
+        user2.addRating(new Rating(songSoldier, 5));
         user3.addRating(new Rating(songCR, 2));
         user3.addRating(new Rating(songBoogie, 5));
         user3.addRating(new Rating(songGimme, 4));

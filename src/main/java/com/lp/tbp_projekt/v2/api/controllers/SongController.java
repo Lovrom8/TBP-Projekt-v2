@@ -24,7 +24,7 @@ public class SongController
     }
 
     @RequestMapping(value = "/api/user/rated/songs", method = RequestMethod.GET)
-    public ResponseEntity<?> addSongRating()
+    public ResponseEntity<?> getSongsRatedByUser()
     {
         Authentication context = SecurityContextHolder.getContext().getAuthentication();
         String idJWT = context != null ? (String) context.getPrincipal() : null;
@@ -36,7 +36,7 @@ public class SongController
 
         try
         {
-            return ResponseEntity.ok(new RecommenderResponse<>(true, "Rated songs found!", songService.getSongsRatedByUser(idJWT)));
+            return ResponseEntity.ok(new RecommenderResponse<>(true, "Song ratings found!", songService.getSongsRatedByUser(idJWT)));
         }
         catch (Exception ex)
         {
@@ -81,6 +81,28 @@ public class SongController
         try
         {
             return ResponseEntity.ok(new RecommenderResponse<>(true, "Song details found!", songService.getSongRating(idJWT, songId)));
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new RecommenderResponse<>(false, "User not found!", null));
+        }
+    }
+
+    @RequestMapping(value = "/api/songs/unrated", method = RequestMethod.GET)
+    public ResponseEntity<?> getUnratedSong()
+    {
+        Authentication context = SecurityContextHolder.getContext().getAuthentication();
+        String idJWT = context != null ? (String) context.getPrincipal() : null;
+
+        if (idJWT == null)
+        {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new RecommenderResponse<>(false, "Invalid credentials!", null));
+        }
+
+        try
+        {
+            return ResponseEntity.ok(new RecommenderResponse<>(true, "Random unrated song found!", songService.getUnratedSong(idJWT)));
         }
         catch (Exception ex)
         {
