@@ -38,7 +38,7 @@ const Header = props => {
             </HeaderButtonWrapperTabs>  } */}
             { userContext.getIsAuthenticated && <HeaderButtonWrapperTabs>
               <NavLink to='/'><TabDefault active={location.pathname === '/' ? "true" : "false"}>Preporuke</TabDefault></NavLink>
-              <NavLink to='/likedGenres'><TabDefault active={location.pathname === '/likedGenres' ? "true" : "false"}>Žanrovi</TabDefault></NavLink>
+              <NavLink to='/ratedSongs'><TabDefault active={location.pathname === '/ratedSongs' ? "true" : "false"}>Rated songs</TabDefault></NavLink>
             </HeaderButtonWrapperTabs>  }
             { userContext.getIsAuthenticated && <HeaderButtonWrapper>
           <ButtonHeader height="100%" width="100%" onClick={handleLogout}>
