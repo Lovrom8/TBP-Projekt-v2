@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,7 @@ public class SongController
 
         try
         {
-            return ResponseEntity.ok(new RecommenderResponse<>(true, "Song ratings found!", songService.getSongsRatedByUser(idJWT)));
+            return ResponseEntity.ok(new RecommenderResponse<>(true, "Song ratings found!", new HashSet<>(songService.getSongsRatedByUser(idJWT))));
         }
         catch (Exception ex)
         {
@@ -103,6 +104,28 @@ public class SongController
         try
         {
             return ResponseEntity.ok(new RecommenderResponse<>(true, "Random unrated song found!", songService.getUnratedSong(idJWT)));
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new RecommenderResponse<>(false, "User not found!", null));
+        }
+    }
+
+    @RequestMapping(value = "/api/songs/search/{searchTerm}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUnratedSong(@PathVariable("searchTerm") String searchTerm)
+    {
+        Authentication context = SecurityContextHolder.getContext().getAuthentication();
+        String idJWT = context != null ? (String) context.getPrincipal() : null;
+
+        if (idJWT == null)
+        {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new RecommenderResponse<>(false, "Invalid credentials!", null));
+        }
+
+        try
+        {
+            return ResponseEntity.ok(new RecommenderResponse<>(true, "Song search results!", songService.getSongSearchResults(idJWT, searchTerm)));
         }
         catch (Exception ex)
         {

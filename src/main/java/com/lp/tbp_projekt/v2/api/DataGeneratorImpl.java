@@ -116,7 +116,7 @@ public class DataGeneratorImpl implements DataGenerator
         //endregion
 
         Song songHeirApparent = songRepo.save(new Song("Heir Apparent", genreHM, albumWatershed, Arrays.asList(sbDeathMetal, sbProgMetal)));
-        Song songCGates = songRepo.save(new Song("Cemetery Gates", genreHM, albumCowboys, Arrays.asList(sbThrashMetal, sbGrooveMetal)));
+        Song songCGates = songRepo.save(new Song("Cemetery Gates", genreHM, albumCowboys, Arrays.asList(sbGrooveMetal)));
         Song songRefuse = songRepo.save(new Song("Refuse/Resist", genreHM, albumChaosAD, List.of(sbGrooveMetal)));
         Song songCR = songRepo.save(new Song("Carolus Rex", genreHM, albumCarolusRex, List.of(sbPowerMetal)));
 
@@ -179,16 +179,20 @@ public class DataGeneratorImpl implements DataGenerator
 
         user1.addRating(new Rating(songCR, 5));
         user1.addRating(new Rating(songCGates, 4));
+        user1.addRating(new Rating(songSoldier, 4));
         user2.addRating(new Rating(songCGates, 5));
         user2.addRating(new Rating(songSnakes, 1));
         user2.addRating(new Rating(songSoldier, 5));
+        user2.addRating(new Rating(songGimme, 4));
         user3.addRating(new Rating(songCR, 2));
         user3.addRating(new Rating(songBoogie, 5));
         user3.addRating(new Rating(songGimme, 4));
         user3.addRating(new Rating(songHearts, 2));
+        user3.addRating(new Rating(songSoldier, 2));
 
         userRepo.save(user1);
         userRepo.save(user2);
+        userRepo.save(user3);
 
         for (User user : userRepo.findAll())
         {

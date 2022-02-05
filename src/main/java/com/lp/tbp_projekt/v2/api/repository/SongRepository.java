@@ -2,7 +2,6 @@ package com.lp.tbp_projekt.v2.api.repository;
 
 import com.lp.tbp_projekt.v2.api.models.Recommendation;
 import com.lp.tbp_projekt.v2.api.models.Song;
-import com.lp.tbp_projekt.v2.api.models.User;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 
@@ -16,7 +15,7 @@ public interface SongRepository extends Neo4jRepository<Song, String>
             "(song)-[g:IN_GENRE]->(genre), " +
             "(song)-[s:IN_SUBGENRES]->(subgenre), " +
             "(album)-[a:BY_ARTIST]->(artist)" +
-            "RETURN song, collect(o), album, collect(g), genre, collect(s), subgenre, collect(a), artist")
+            "RETURN collect(s), collect(subgenre) AS subgenres, collect(o), collect(album), collect(g), collect(genre), collect(a), collect(artist), album, artist, genre, song")
     List<Song> findSongsRatedByUser(String userId);
 
     @Query("MATCH (user:User{id: $userId})-[r:RATED]->(song) WHERE song.id=$songId RETURN r.rating")
@@ -28,7 +27,7 @@ public interface SongRepository extends Neo4jRepository<Song, String>
             "(song)-[g:IN_GENRE]->(genre), " +
             "(song)-[s:IN_SUBGENRES]->(subgenre), " +
             "(album)-[a:BY_ARTIST]->(artist) " +
-            "RETURN song, collect(o), album, collect(g), genre, collect(s), subgenre, collect(a), artist " +
+            "RETURN collect(s), collect(subgenre) AS subgenres, collect(o), collect(album), collect(g), collect(genre), collect(a), collect(artist), album, artist, genre, song " +
             "ORDER BY rand() LIMIT 1")
     Song findUnratedSongsForUser(String userId);
 
@@ -43,8 +42,19 @@ public interface SongRepository extends Neo4jRepository<Song, String>
             "(song)-[g:IN_GENRE]->(genre), " +
             "(song)-[s:IN_SUBGENRES]->(subgenre), " +
             "(album)-[a:BY_ARTIST]->(artist) " +
-            "RETURN song, SUM( pearson * r.rating) AS score, collect(o), album, collect(g), genre, collect(s), subgenre, collect(a), artist " +
-            "ORDER BY score DESC LIMIT 25"
+            "RETURN SUM(pearson * r.rating) AS score, collect(s), collect(subgenre) AS subgenres, collect(o), collect(album), collect(g), collect(genre), collect(a), collect(artist), album, artist, genre, song " +
+            "ORDER BY score DESC LIMIT 3"
     )
     List<Recommendation> getRecommendationForUser(String userId);
+
+    @Query("MATCH (song)-[o:ON_ALBUM]->(album), " +
+            "(song)-[g:IN_GENRE]->(genre), " +
+            "(song)-[s:IN_SUBGENRES]->(subgenre), " +
+            "(album)-[a:BY_ARTIST]->(artist) " +
+            "WHERE toLower(genre.name) CONTAINS toLower($searchTerm) " +
+            "OR toLower(artist.name) CONTAINS toLower($searchTerm) " +
+            "OR toLower(song.name) CONTAINS toLower($searchTerm) " +
+            "OR toLower(album.name) CONTAINS toLower($searchTerm) " +
+            "RETURN collect(s), collect(subgenre) AS subgenres, collect(o), collect(album), collect(g), collect(genre), collect(a), collect(artist), album, artist, genre, song")
+    List<Song> findSongsBySearchTerm(String searchTerm);
 }

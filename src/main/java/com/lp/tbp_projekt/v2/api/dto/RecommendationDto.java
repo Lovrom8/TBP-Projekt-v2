@@ -1,8 +1,11 @@
 package com.lp.tbp_projekt.v2.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lp.tbp_projekt.v2.api.mappers.GenericMapper;
+import com.lp.tbp_projekt.v2.api.models.Recommendation;
+import com.lp.tbp_projekt.v2.api.models.Song;
 
-public class RatedSongsDto
+public class RecommendationDto
 {
     private String songId;
     private String albumName;
@@ -13,22 +16,10 @@ public class RatedSongsDto
     private String genre;
     private String subgenres;
     private String albumUrl;
-    private Integer rating;
+    private Double score;
 
-    public RatedSongsDto()
+    public RecommendationDto()
     {
-    }
-
-    public RatedSongsDto(final String songName, final String songId, final String albumName, final String artistName, final String genre, final String subgenres, final String albumUrl, final Integer rating)
-    {
-        this.songId = songId;
-        this.albumName = albumName;
-        this.artistName = artistName;
-        this.genre = genre;
-        this.subgenres = subgenres;
-        this.albumUrl = albumUrl;
-        this.rating = rating;
-        this.songName = songName;
     }
 
     public String getSongId()
@@ -51,14 +42,24 @@ public class RatedSongsDto
         this.albumName = albumName;
     }
 
-    public String getArtist()
+    public String getArtistName()
     {
         return artistName;
     }
 
-    public void setArtistName(final String artist)
+    public void setArtistName(final String artistName)
     {
-        this.artistName = artist;
+        this.artistName = artistName;
+    }
+
+    public String getSongName()
+    {
+        return songName;
+    }
+
+    public void setSongName(final String songName)
+    {
+        this.songName = songName;
     }
 
     public String getGenre()
@@ -91,23 +92,13 @@ public class RatedSongsDto
         this.albumUrl = albumUrl;
     }
 
-    public Integer getRating()
+    public Double getScore()
     {
-        return rating;
+        return score;
     }
 
-    public void setRating(final Integer rating)
+    public void setScore(final Double score)
     {
-        this.rating = rating;
-    }
-
-    public String getSong()
-    {
-        return songName;
-    }
-
-    public void setSongName(final String song)
-    {
-        this.songName = song;
+        this.score = score;
     }
 }

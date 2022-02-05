@@ -95,6 +95,6 @@ public class Song
             allSubgenres = allSubgenres + ", " + subgenre.getName();
         }
 
-        return allSubgenres.substring(1);
+        return allSubgenres.substring(2);
     }
 }

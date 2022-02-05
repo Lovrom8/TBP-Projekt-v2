@@ -41,6 +41,7 @@ public class RatingController
 
         try
         {
+            addRatingDto.setUserId(idJWT);
             if (ratingService.addSongRating(addRatingDto))
             {
                 return ResponseEntity.ok(new RecommenderResponse<>(true, "Song rating added!", null));
@@ -70,6 +71,7 @@ public class RatingController
 
         try
         {
+            updateRatingDto.setUserId(idJWT);
             if (ratingService.setSongRating(updateRatingDto))
             {
                 return ResponseEntity.ok(new RecommenderResponse<>(true, "Song rating updated!", null));

@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Node
 public class User
@@ -99,12 +100,12 @@ public class User
 
     public void addRating(Rating rating)
     {
-        this.ratings.add(rating);
+        updateRating(rating);
     }
 
     public void updateRating(Rating rating)
     {
-        this.ratings.removeIf(r -> r.getSong() == rating.getSong());
+        this.ratings.removeIf(r -> Objects.equals(r.getSong().getId(), rating.getSong().getId()));
         this.ratings.add(rating);
     }
 }

@@ -22,7 +22,7 @@ public class RecommendationController
         this.songService = songService;
     }
 
-    @RequestMapping(value = "/api/user/recommmendation", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/user/recommendation", method = RequestMethod.GET)
     public ResponseEntity<?> getRecommendations()
     {
         Authentication context = SecurityContextHolder.getContext().getAuthentication();

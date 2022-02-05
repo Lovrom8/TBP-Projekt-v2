@@ -18,11 +18,11 @@ public class RatedSongMapper implements GenericMapper<RatedSongsDto, Song>
         RatedSongsDto ratedSong = new RatedSongsDto();
 
         ratedSong.setSongId(entity.getId());
-        ratedSong.setSong(entity.getTitle());
+        ratedSong.setSongName(entity.getTitle());
         ratedSong.setGenre(entity.getGenre().getName());
         ratedSong.setSubgenres(entity.getAllSubgenres());
         ratedSong.setAlbumName(entity.getAlbum().getName());
-        ratedSong.setArtist(entity.getAlbum().getArtist().getName());
+        ratedSong.setArtistName(entity.getAlbum().getArtist().getName());
         ratedSong.setAlbumUrl(entity.getAlbum().getUrl());
 
         return ratedSong;

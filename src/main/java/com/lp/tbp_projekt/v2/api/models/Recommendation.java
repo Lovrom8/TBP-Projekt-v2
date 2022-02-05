@@ -82,4 +82,16 @@ public class Recommendation
     {
         this.score = score;
     }
+
+    public String getAllSubgenres()
+    {
+        String allSubgenres = "";
+
+        for (Subgenre subgenre : subgenres)
+        {
+            allSubgenres = allSubgenres + ", " + subgenre.getName();
+        }
+
+        return allSubgenres.substring(2).replaceAll("\\s+$", "");
+    }
 }
