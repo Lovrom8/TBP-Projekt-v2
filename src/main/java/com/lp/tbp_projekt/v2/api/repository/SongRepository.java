@@ -53,7 +53,7 @@ public interface SongRepository extends Neo4jRepository<Song, String>
             "(album)-[a:BY_ARTIST]->(artist) " +
             "WHERE toLower(genre.name) CONTAINS toLower($searchTerm) " +
             "OR toLower(artist.name) CONTAINS toLower($searchTerm) " +
-            "OR toLower(song.name) CONTAINS toLower($searchTerm) " +
+            "OR toLower(song.title) CONTAINS toLower($searchTerm) " +
             "OR toLower(album.name) CONTAINS toLower($searchTerm) " +
             "RETURN collect(s), collect(subgenre) AS subgenres, collect(o), collect(album), collect(g), collect(genre), collect(a), collect(artist), album, artist, genre, song")
     List<Song> findSongsBySearchTerm(String searchTerm);
