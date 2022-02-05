@@ -11,6 +11,7 @@ import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import SongSearch from './pages/SongSearch/SongSearch';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/likedGenres" element={<ProtectedRoute><LikedGenres /></ProtectedRoute>} />
           <Route path="/ratedSongs" element={<ProtectedRoute><RatedSongs /></ProtectedRoute>} />
           <Route path="/editRating" element={<ProtectedRoute><RateSong /></ProtectedRoute>} />
+          <Route path="/songSearch" element={<ProtectedRoute><SongSearch/></ProtectedRoute>} />
           <Route path="/" element={<ProtectedRoute><Recommendations /></ProtectedRoute>} />
         </Routes>
       </Main>

@@ -29,3 +29,13 @@ export const getRandomUnratedSong = (authToken) => {
     },
   }).then((res) => res.json());
 };
+
+export const getSongSearch = (authToken, searchTerm) => {
+  return fetch(`${apiOrigin}/api/songs/search/${searchTerm}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + authToken,
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => res.json());
+};

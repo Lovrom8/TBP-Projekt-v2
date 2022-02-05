@@ -10,7 +10,6 @@ const Recommendations = () => {
     const loadRecommendations = async () => {
       const dataJSON = await getRecommendations(userContext.getJWT);
       setRecommendationData(dataJSON.data);
-      console.log(dataJSON.data);
     };
   
     useEffect(() => {

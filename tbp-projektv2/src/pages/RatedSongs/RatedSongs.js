@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getRatedSongs } from '../../api/ratedSongs';
 import RatedSong from '../../components/RatedSong/RatedSong';
-import { ButtonRateMore, RatedSongsWrapper, RatedSongsGrid } from './RatedSongsStyle';
+import { ButtonRateMore, RatedSongsWrapper, RatedSongsGrid, ButtonSongSearch, MenuButtonsWrapper } from './RatedSongsStyle';
 import userContext from '../../context/userContext';
 import { Link } from 'react-router-dom';
 
@@ -20,12 +20,17 @@ const RatedSongs = () => {
 
     return (
         <RatedSongsWrapper>
-            <Link to={`/editRating?rateMore=1`}>
-                <ButtonRateMore type="submit" value="Rate more" />
-            </Link>
+            <MenuButtonsWrapper>
+                <Link to={`/editRating?rateMore=1`}>
+                    <ButtonRateMore type="submit" value="Ocjeni nasumičnu pjesmu" />
+                </Link>
+                <Link to={`/songSearch`}>
+                    <ButtonSongSearch type="submit" value="Pretraga pjesama" />
+                </Link>
+            </MenuButtonsWrapper>
             <RatedSongsGrid>
             { ratedSongsData &&
-                ratedSongsData.map((ratedSong) => <RatedSong key={ratedSong.id} song={ratedSong} /> )  
+                ratedSongsData.map((ratedSong) => <RatedSong key={ratedSong.songId} song={ratedSong} /> )  
             }
             </RatedSongsGrid>
         </RatedSongsWrapper>

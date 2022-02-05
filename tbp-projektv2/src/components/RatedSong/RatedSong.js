@@ -11,7 +11,7 @@ const RatedSong = ({song}) => {
         <SubgenreList>{song.subgenres}</SubgenreList>
         <Rating>{song.rating}</Rating>
         <Link to={`/editRating?songId=${song.songId}`}>
-            <ButtonEditRating type="submit" value="Edit rating" />
+            <ButtonEditRating type="submit" value="Promjeni ocjenu" />
         </Link>
     </RatedSongWrapper>
 };

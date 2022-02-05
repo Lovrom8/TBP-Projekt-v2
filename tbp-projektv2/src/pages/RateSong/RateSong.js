@@ -19,7 +19,6 @@ const RateSong = () => {
     const loadSongDetails = async () => {
         const dataJSON = await getSongDetails(userContext.getJWT, songId);
         setSongData(dataJSON.data);
-        console.log(dataJSON.data);
     };
 
     const loadSongRating = async () => {

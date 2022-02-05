@@ -24,8 +24,23 @@ export const RatedSongsGrid = styled.div`
 
 export const ButtonRateMore = styled.input`
   ${ButtonStyle};
-  width: 150px;
+  width: 300px;
   text-align: center;
 
   background-color: ${colors.black};
+`;
+
+export const ButtonSongSearch = styled.input`
+  ${ButtonStyle};
+  width: 200px;
+  text-align: center;
+
+  background-color: ${colors.black};
+`;
+
+export const MenuButtonsWrapper = styled.div`
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 `;
