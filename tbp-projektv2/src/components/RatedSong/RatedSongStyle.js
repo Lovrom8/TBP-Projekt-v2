@@ -50,7 +50,7 @@ export const Rating = styled.span`
 
 export const ButtonEditRating = styled.input`
   ${ButtonStyle};
-  width: 150px;
+  width: 175px;
 
   background-color: ${colors.black};
 `;
